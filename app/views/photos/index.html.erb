@@ -1,32 +1,24 @@
 <div class="page-header">
-  <h1>
-    Photos
-    <a href="/photos/new" class="btn btn-lg btn-success">New Photo</a>
-  </h1>
+  <center>
+    <h1>All Photos</h1>
+    <p><a href="/photos/new" class="btn btn-lg btn-success">Add Photo</a></p>
+  </center>
 </div>
 
+<% @photos.each do |photo| %>
 <div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Caption</th>
-        <th>Image</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.caption %></td>
-        <td><%= photo.image %></td>
-        <td><%= photo.user_id %></td>
-        <td>
-          <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href = "/users/<%= photo.user_id %>"><%= photo.user.username %></a></div>
+      <div class="panel-body">
+        <center><a href = "/photos/<%= photo.id %>"><img src = "<%= photo.image %>" width = "500"></a></center>
+        <p><%= photo.caption %></p>
+        <% photo.comments.each do |comment| %>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
+        <p><%= comment.body %></p>
+        <% end %>
+    </div>
   </div>
 </div>
+</div>
+<% end %>
