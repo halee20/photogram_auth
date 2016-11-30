@@ -1,0 +1,24 @@
+<div class="page-header">
+  <center>
+    <h3><%= @user.username %>'s Photos</h3>
+    <p><a href="/photos/new" class="btn btn-lg btn-success">Add Photo</a></p>
+  </center>
+</div>
+
+<% @user.photos.each do |photo| %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href = "/users/<%= photo.user_id %>"><%= photo.user.username %></a></div>
+      <div class="panel-body">
+        <center><a href = "/photos/<%= photo.id %>"><img src = "<%= photo.image %>" width = "500"></a></center>
+        <p><%= photo.caption %></p>
+        <% photo.comments.each do |comment| %>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
+        <p><%= comment.body %></p>
+        <% end %>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>

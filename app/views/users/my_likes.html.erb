@@ -1,0 +1,21 @@
+<div class="page-header">
+  <center><h3><%= current_user.username %>'s Likes</h3></center>
+</div>
+
+<% @likes.each do |like| %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href = "/users/<%= like.photo.user_id %>"><%= like.photo.user.username %></a></div>
+      <div class="panel-body">
+        <center><a href = "/photos/<%= like.photo.id %>"><img src = "<%= like.photo.image %>" width = "500"></a></center>
+        <p><%= like.photo.caption %></p>
+        <% like.photo.comments.each do |comment| %>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
+        <p><%= comment.body %></p>
+        <% end %>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>

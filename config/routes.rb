@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   root "photos#index"
-  
+
+  # Routes for the User resource:
+  # READ
+  get "/users", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
+
+  # Routes for the My Likes resource:
+   # READ
+   get "/my_likes", :controller => "users", :action => "likes"
+
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
