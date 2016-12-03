@@ -4,7 +4,7 @@
       <div class="panel-heading"><a href = "/users/<%= @photo.user_id %>"><%= @photo.user.username %></a></div>
       <div class="panel-body">
         <center><a href = "/photos/<%= @photo.id %>"><img src = "<%= @photo.image %>" width = "500"></a></center>
-        <p><%= @photo.caption %></p>
+        <p> <button class="btn btn-link"><i class="fa fa-heart-o"></i></button> <%= @photo.caption %></p>
       </div>
     </div>
   </div>
